@@ -41,7 +41,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bignumber.js/8.0.1/bignumber.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="scripts-obfu.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
+    <script src="scripts.js"></script>
     <script>
       //keep in head for quick theme load
       if (localStorage.getItem('stylesheet') !== null) {
@@ -73,7 +74,7 @@
     <div id="overlay" style="display:block;">
       <div id="overlay-text"><img src="puff.svg" style="width:100px;" /></div>
     </div>
-    <div class="container">
+    <div class="container-xl">
       <nav class="navbar navbar-expand-lg navbar-dark bg-primary mt-3">
         <a id="contract-symbol" class="navbar-brand" href="#">CURVY BACKUP</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-main" aria-controls="navbar-main" aria-expanded="false" aria-label="Toggle navigation">
@@ -125,7 +126,7 @@
 
       <!-- Column 1  -->
       <div class="row">
-        <div class="col-xl-6 mt-3">
+        <div class="col-xl-4 mt-3">
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">
@@ -228,24 +229,24 @@
               </h5>
 
               <div id="has-no-ref-link" class="row" style="display:none;">
-                <label class="col-xl-6 col-form-label">Register Tag to Promote:</label>
-                <div class="col-xl-6 col-form-label text-left">
+                <label class="col-xl-5 col-form-label">Register Tag to Promote:</label>
+                <div class="col-xl-7 col-form-label text-left">
                   <a href="https://curvy.ai/minnow">JUST.GAME</a>
                 </div>
               </div>
 
               <div class="has-ref-link row" style="display:none;">
-                <label class="col-xl-4 col-form-label">LifetimeEarnings:</label>
-                <label id="lifetime-promo" class="player-boxes col-xl-6 col-form-label text-left">0.00 TRX</label>
+                <label class="col-xl-5 col-form-label">LifetimeEarnings:</label>
+                <label id="lifetime-promo" class="player-boxes col-xl-7 col-form-label text-left">0.00 TRX</label>
               </div>
               <div class="has-ref-link row" style="display:none;">
-                <label class="col-xl-4 col-form-label">Current Earnings:</label>
-                <label id="promo-earnings" class="player-boxes col-xl-6 col-form-label text-left">0.00 TRX</label>
+                <label class="col-xl-5 col-form-label">Current Earnings:</label>
+                <label id="promo-earnings" class="player-boxes col-xl-7 col-form-label text-left">0.00 TRX</label>
               </div>
 
               <div class="has-ref-link row" style="display:none;">
-                <label class="col-xl-4 col-form-label">Your Ref Link:</label>
-                <label class="div4 col-xl-8 col-form-label text-left">
+                <label class="col-xl-5 col-form-label">Your Ref Link:</label>
+                <label class="div4 col-xl-7 col-form-label text-left">
                   <a class="player-ref-link" href=""></a>
                 </label>
               </div>
@@ -272,14 +273,11 @@
               </table>
             </div>
           </div>
-
-
-
         </div>
         
 
         <!-- Column 2 -->
-        <div class="col-xl-6 mt-3">
+        <div class="col-xl-5 mt-3">
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">
@@ -338,14 +336,22 @@
               </h5>
               <form>
                 <div class="row">
-                  <label class="col-xl-6 col-form-label">TRX to Spend:</label>
-                  <div class="col-xl-6">
+                  <label class="col-xl-3 col-form-label">Box Price:</label>
+                  <label id="box-price" class="div4 col-xl-9 col-form-label text-left">25 TRX</label>
+                </div>
+                <div class="row mb-3">
+                  <label class="col-xl-3 col-form-label">Actual Price:</label>
+                  <label id="final-box-price" class="div4 col-xl-9 col-form-label text-left">25 TRX</label>
+                </div>
+                <div class="row">
+                  <label class="col-xl-3 col-form-label">TRX to Spend:</label>
+                  <div class="col-xl-9">
                     <input id="txt-buy-amount" type="number" class="form-control" style="border:1px solid #c9c9c9 !important;" />
                   </div>
                 </div>
                 <div id="boxes-for-trx-div" class="row mt-2" style="display:none;">
-                  <label class="col-xl-6 col-form-label">You'll Get:</label>
-                  <label id="boxes-for-trx" class="div6 col-xl-6 col-form-label text-left"></label>
+                  <label class="col-xl-3 col-form-label">You'll Get:</label>
+                  <label id="boxes-for-trx" class="div6 col-xl-9 col-form-label text-left"></label>
                 </div>
                 <div class="row mt-3" id="boxes-for-trx" style="display:hidden;">
                   <div class="col-xl-12">
@@ -479,6 +485,59 @@
             </div>
           </div>
         </div>
+
+     
+
+      <div class="col-xl-3 mt-3"> 
+
+        <div class="card">
+          <div class="card-body" style="padding-left:0px; padding-right:0px;padding-bottom:0px;">
+            <h5 class="card-title" style="padding-left: 20px;padding-right: 20px;">
+              Live Feed
+              <button
+                style="float:right;font-size:15px;margin-top:-10px;"
+                class="btn btn-sm btn-secondary"
+                data-container="body"
+                data-toggle="popover"
+                data-placement="bottom"
+                data-html="true"
+                data-content="Box purchases, box openings and earnings withdrawls are displayed.<br/>More details: <a href='https://justgame.hostedwiki.co/'>Read the WIKI</a>">
+                ?
+              </button>
+            </h5>
+            <div id="live-feed-list" class="list-group list-group-flush" style="overflow-y:auto; min-height:500px;max-height:1330px;text-align:left;"></div>
+          </div>
+        </div>
+
+
+
+        <!-- <div class="card text-center">
+          <div class="card-header">
+            <ul class="nav nav-pills nav-justified">
+              <li class="nav-item" style="margin-right:0;">
+                <a class="nav-link active"  data-toggle="tab" href="#livefeed">Live Feed</a>
+              </li>
+              <li class="nav-item" style="margin-right:0;">
+                <a class="nav-link"  data-toggle="tab" href="#top100">Top 100</a>
+              </li>
+            </ul>
+          </div>
+          <div class="card-body" style="padding:0;">
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="livefeed">
+                <div id="live-feed-list" class="list-group list-group-flush" style="overflow-y:auto; min-height:500px;max-height:1330px;text-align:left;"></div>
+              </div>
+              <div class="tab-pane fade" id="top100">
+                <div id="top-100-list" class="list-group list-group-flush" style="overflow-y:auto; min-height:500px;max-height:1330px;text-align:left;"></div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+        <!-- <div id="live-feed-list" class="list-group list-group-flush" style="overflow-y:auto; min-height:500px;max-height:1330px;"></div> -->
+
+      </div>  
+        
       </div>
 
       <footer class="text-muted mt-5">
@@ -515,5 +574,9 @@
         </div>
       </div>
     </div>
+
+
+     
+
   </body>
 </html>
