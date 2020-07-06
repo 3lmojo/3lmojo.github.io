@@ -1,3 +1,28 @@
+#clockdiv,
+#glitchdiv {
+  font-family: sans-serif;
+  color: #fff;
+  display: inline-block;
+  font-weight: 100;
+  text-align: center;
+  font-size: 30px;
+}
+
+#clockdiv > div,
+#glitchdiv > div {
+  padding: 10px;
+  border-radius: 3px;
+  background: var(--primary);
+  display: inline-block;
+}
+
+#clockdiv div > span,
+#glitchdiv div > span {
+  padding: 15px;
+  border-radius: 3px;
+  background: var(--dark);
+  display: inline-block;
+}
 
 .smalltext {
   padding-top: 5px;
